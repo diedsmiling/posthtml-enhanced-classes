@@ -5,7 +5,7 @@ module.exports = function(options) {
 
   return function(tree) {
     tree.match({attrs: {class: true}}, function (node) {
-      cE.detectClasses(node)
+      cE.detectClasses(node.attrs.class)
       return node
     })
 
