@@ -4,7 +4,7 @@
   "description": "PosthHTML plugin to give enhanced features to html classes.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha -r tests/test_helper.js -R spec tests/specs/**/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,9 @@
     "eslint": "^3.0.1",
     "eslint-config-standard": "^5.3.1",
     "mocha": "^2.5.3",
-    "posthtml": "^0.8.7"
+    "posthtml": "^0.8.7",
+    "proxyquire": "^1.7.10",
+    "sinon": "^1.17.4",
+    "sinon-chai": "^2.8.0"
   }
 }
