@@ -20,13 +20,13 @@ let enhancedClasses
 
 describe('enhancedClasses ', function() {
   beforeEach(function(done) {
-    sinon.spy(classesEnhancment, 'detectClasses')
+    sinon.spy(classesEnhancment, 'matchClasses')
     enhancedClasses = proxyquire('../../index', {
       './lib/classesEnhancment': classesEnhancment
     })
     posthtml([ enhancedClasses({}) ])
       .process(input)
-      .then(function (result) {
+      .then(function () {
         done()
       }).catch(function (error) {
       done(error)
@@ -34,21 +34,21 @@ describe('enhancedClasses ', function() {
   })
 
   afterEach(function() {
-    classesEnhancment.detectClasses.restore()
+    classesEnhancment.matchClasses.restore()
   })
 
   it('should only parse nodes that have classes', function() {
-    expect(classesEnhancment.detectClasses).to.be.callCount(4)
+    expect(classesEnhancment.matchClasses).to.be.callCount(4)
   })
 
-  it('should call detectClasses method with classes strings', function() {
-    expect(classesEnhancment.detectClasses)
+  it('should call matchClasses method with classes strings', function() {
+    expect(classesEnhancment.matchClasses)
       .to.be.calledWith('button')
-    expect(classesEnhancment.detectClasses)
+    expect(classesEnhancment.matchClasses)
       .to.be.calledWith('button__text a_class')
-    expect(classesEnhancment.detectClasses)
+    expect(classesEnhancment.matchClasses)
       .to.be.calledWith('another_button')
-    expect(classesEnhancment.detectClasses)
+    expect(classesEnhancment.matchClasses)
       .to.be.calledWith('another_button__text')
   })
 
